@@ -1,7 +1,7 @@
 <p style="color: green"><%= notice %></p>
 
 <%# <h5>Rank Schools</h5> %>
-<p>Rank schools from each seed line (1-16) by preference (1 being most desired, 4 being least). move to the next seed line after ranking. Designate 4 seed lines as priority tie-breakers and 2 as super priority tie-breakers.</p>
+<!-- <p>Rank schools from each seed line (1-16) by preference (1 being most desired, 4 being least). move to the next seed line after ranking. Designate 4 seed lines as priority tie-breakers and 2 as super priority tie-breakers.</p> -->
 
 <table class="table">
   <caption class="caption-top"><%= @seed %> Seeds</caption>
@@ -40,7 +40,7 @@
 
 <% seed_lines = (1..16).to_a %>
 <% if ranks.compact.sort == [1,2,3,4] %>
-  <p class="text-success text-center">Complete - move to next seed line or use a Tie-Break</p>
+  <p class="text-success text-center">Complete - move to next seed line</p>
     <% if @tie_break == true %>
       <span class="text-success"> Tie-break selected</span><small> <%= link_to "Remove", draft_ranks_path(pick: 'priority_remove', seed: @seed, game: @game, player: @player), class: '' %></small>
     <% else %>
