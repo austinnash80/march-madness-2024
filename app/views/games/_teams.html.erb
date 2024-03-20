@@ -5,12 +5,11 @@
         <caption class="caption-top">Team <%= team.join %></caption>
         <thead>
           <tr>
-            <th style="width: 12%">Seed</th>
-            <th style="width: 26%">School</th>
-            <th style="width: 26%">Region</th> 
-            <th style="width: 12%">Wins</th>
-            <th style="width: 12%">Points</th>
-            <th style="width: 12%">Alive</th>
+            <th style="width: 15%">Seed</th>
+            <th style="width: 40%">School</th>
+            <th style="width: 30%">Region</th> 
+            <th style="width: 15%">Wins</th>
+            <!-- <th style="width: 12%">Points</th> -->
           </tr>
         </thead>
         <tbody>
@@ -18,14 +17,14 @@
           <tr>
             <td><%= draft_results.school.seed %></td>
             <td><%= draft_results.school.name %></td>
-            <td><%= draft_results.school.region %></td>
+            <td><%= draft_results.school.region.titleize %></td>
             <td><%= draft_results.school.wins %></td>
-            <td></td>
-            <% if draft_results.school.alive? %>
-              <td class="text-success">Yes</td>
-            <% else %>
-              <td class="text-danger">No</td>
-            <% end %>
+            <!-- <td></td> -->
+            <%# if draft_results.school.alive? %>
+              <!-- <td class="text-success">Yes</td> -->
+            <%# else %>
+              <!-- <td class="text-danger">No</td> -->
+            <%# end %>
           </tr>
           <% end %>
         </tbody>

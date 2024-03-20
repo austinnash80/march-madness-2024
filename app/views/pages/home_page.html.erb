@@ -1,5 +1,5 @@
-<br>
-<p style="color: green"><%= notice %></p>
+<%= link_to "Admin", pages_admin_path %>
+<!-- <p style="color: green"><%#= notice </p> %>-->
 <div class="text-center">
   <%# <label for="gameId">Search by game ID:</label> %>
   <input type="text" id="gameId" name="gameId" placeholder="Search by game ID">
@@ -41,7 +41,7 @@
   <li>The draft will occur automatically once all 4 players have ranked all 64 schools</li>
   <li>Teams will be selected based on how each player ranked the schools</li>
   <li>For example, if you rank a school '1' and no other player does, that school is added to your team</li>
-  <li>If multiple players rank the school '1', the player with the highest priority level will get the school</li>
+  <li>If multiple players rank the school '1', the player with the highest priority level selected for that school will get the school</li>
   <li>In case of a tie after accounting for priority levels, the school will be randomly assigned between players</li>
 <ul>
 
