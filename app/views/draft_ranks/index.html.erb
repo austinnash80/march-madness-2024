@@ -42,22 +42,22 @@
 <% if ranks.compact.sort == [1,2,3,4] %>
   <p class="text-success text-center">Complete - move to next seed line</p>
     <% if @tie_break == true %>
-      <span class="text-success"> Tie-break selected</span><small> <%= link_to "Remove", draft_ranks_path(pick: 'priority_remove', seed: @seed, game: @game, player: @player), class: '' %></small>
+      <span class="text-success"> priority selected</span><small> <%= link_to "Remove", draft_ranks_path(pick: 'priority_remove', seed: @seed, game: @game, player: @player), class: '' %></small>
     <% else %>
-      <% unless @tie_breaks_used == 4 %><%= link_to "Add tie-break", draft_ranks_path(pick: 'priority', seed: @seed, game: @game, player: @player), class: 'btn btn-outline-secondary btn-sm' %><% end %>
+      <% unless @tie_breaks_used == 4 %><%= link_to "Add priority", draft_ranks_path(pick: 'priority', seed: @seed, game: @game, player: @player), class: 'btn btn-outline-secondary btn-sm' %><% end %>
     <% end %>
     <% if @super_tie_break == true %>
-      <span class="text-success"> Super Tie-break selected </span><small> <%= link_to "Remove", draft_ranks_path(pick: 'super_priority_remove', seed: @seed, game: @game, player: @player), class: '' %></small>
+      <span class="text-success"> Super priority selected </span><small> <%= link_to "Remove", draft_ranks_path(pick: 'super_priority_remove', seed: @seed, game: @game, player: @player), class: '' %></small>
     <% else %>
-      <% unless @super_tie_breaks_used == 2%><%= link_to "Add super tie-break", draft_ranks_path(pick: 'super_priority', seed: @seed, game: @game, player: @player), class: 'btn btn-outline-secondary btn-sm' %><% end %>
+      <% unless @super_tie_breaks_used == 2%><%= link_to "Add super priority", draft_ranks_path(pick: 'super_priority', seed: @seed, game: @game, player: @player), class: 'btn btn-outline-secondary btn-sm' %><% end %>
     <% end %>
 <% else %>
   <p class="text-danger text-center">Schools must be ranked 1-4 with no duplicates</p>
 <% end %>
 <br><br>
 <!-- TIE BREAK LINES -->
-  <p>Tie Breaks remaining: <span class="text-success fw-bold"><%= 4 - @tie_breaks_used %></span></p>
-  <p>Super Tie Breaks remaining: <span class="text-success fw-bold"><%= 2 - @super_tie_breaks_used %></span></p>
+  <p>Priority remaining: <span class="text-success fw-bold"><%= 4 - @tie_breaks_used %></span></p>
+  <p>Super priority remaining: <span class="text-success fw-bold"><%= 2 - @super_tie_breaks_used %></span></p>
 <!-- END TIE BREAK -->
 
 <!-- <p>Seed lines</p> -->
@@ -74,4 +74,4 @@
     <%= link_to seed_line, draft_ranks_path(seed: seed_line, player: @player, game: @game), class: "btn #{color}"%>
 <% end %>
 <br><br>
-<%= link_to 'Finished ranking', game_path(@game, finish: 'yes', game_id: @game, player: @player), class: 'btn btn-primary' %>
+<%= link_to 'Finished ranking', game_path(@game, finish: 'yes', game_id: @game, player: @player), class: 'btn btn-secondary' %>

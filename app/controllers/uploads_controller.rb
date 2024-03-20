@@ -1,11 +1,11 @@
 class UploadsController < ApplicationController
+  require 'csv'
   def new
 
 
   end
 
   def create_school
-    require 'csv'
 
     file_path = params[:file].tempfile
 
@@ -17,7 +17,6 @@ class UploadsController < ApplicationController
   end
 
   def create_draft_ranks
-    require 'csv'
 
     file_path = params[:file].tempfile
 
@@ -29,7 +28,6 @@ class UploadsController < ApplicationController
   end
 
   def create_draft_result
-    require 'csv'
 
     file_path = params[:file].tempfile
 
