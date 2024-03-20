@@ -1,20 +1,16 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>School Selection</h1>
-<ul>
-  <li>For each seed line (1-16) rank the schools in order of the ones you want on your team </li>
-  <li>1 being the school that you want the most. 4 being the school you want the least</li>
-  <li>Once you've ranked the schools 1-4, move on to the next seed line</li>
-  <li>Select 4 seed lines to be your Tie-Break priority and 2 seed lines to be a Super Tie-Break</li>
-</ul>
+<%# <h5>Rank Schools</h5> %>
+<p>Rank schools from each seed line (1-16) by preference (1 being most desired, 4 being least). move to the next seed line after ranking. Designate 4 seed lines as priority tie-breakers and 2 as super priority tie-breakers.</p>
 
 <table class="table">
+  <caption class="caption-top"><%= @seed %> Seeds</caption>
   <thead>
     <tr>
-      <th width="15%">Seed</th>
-      <th width="15%">Region</th>
-      <th width="35%">School</th>
-      <th width="15%">My rank</th>
+      <!-- <th width="15%">Seed</th> -->
+      <th width="20%">Region</th>
+      <th width="40%">School</th>
+      <th width="20%">My rank</th>
       <th width="20%" colspan="4" class="text-center">Choose rank</th>
     </tr>
   </thead>
@@ -22,8 +18,8 @@
     <% ranks = [] %>
     <% School.where(seed: @seed).each do |school| %>
     <tr>
-      <td><%= school.seed %></td>
-      <td><%= school.region %></td>
+      <!-- <td><%= school.seed %></td>-->
+      <td><%= school.region.titleize %></td>
       <td><%= school.name %></td>
       <% rank = DraftRank.where(game_id: params['game'], player: params['player'], school_id: school).pluck('rank') %>
         <% ranks.push(rank[0]) %>
@@ -46,14 +42,14 @@
 <% if ranks.compact.sort == [1,2,3,4] %>
   <p class="text-success text-center">Complete - move to next seed line or use a Tie-Break</p>
     <% if @tie_break == true %>
-      <span class="text-success">You are usig a Tie-Break </span><small><%= link_to "Remove", draft_ranks_path(pick: 'priority_remove', seed: @seed, game: @game, player: @player), class: '' %></small>
+      <span class="text-success"> Tie-break selected</span><small> <%= link_to "Remove", draft_ranks_path(pick: 'priority_remove', seed: @seed, game: @game, player: @player), class: '' %></small>
     <% else %>
-      <% unless @tie_breaks_used == 4 %><%= link_to "Use a Tie Break", draft_ranks_path(pick: 'priority', seed: @seed, game: @game, player: @player), class: 'btn btn-outline-secondary btn-sm' %><% end %>
+      <% unless @tie_breaks_used == 4 %><%= link_to "Add tie-break", draft_ranks_path(pick: 'priority', seed: @seed, game: @game, player: @player), class: 'btn btn-outline-secondary btn-sm' %><% end %>
     <% end %>
     <% if @super_tie_break == true %>
-      <span class="text-success"> You are usig a Super Tie-Break </span><small><%= link_to "Remove", draft_ranks_path(pick: 'super_priority_remove', seed: @seed, game: @game, player: @player), class: '' %></small>
+      <span class="text-success"> Super Tie-break selected </span><small> <%= link_to "Remove", draft_ranks_path(pick: 'super_priority_remove', seed: @seed, game: @game, player: @player), class: '' %></small>
     <% else %>
-      <% unless @super_tie_breaks_used == 2%><%= link_to "Use a Super Tie-Break", draft_ranks_path(pick: 'super_priority', seed: @seed, game: @game, player: @player), class: 'btn btn-outline-secondary btn-sm' %><% end %>
+      <% unless @super_tie_breaks_used == 2%><%= link_to "Add super tie-break", draft_ranks_path(pick: 'super_priority', seed: @seed, game: @game, player: @player), class: 'btn btn-outline-secondary btn-sm' %><% end %>
     <% end %>
 <% else %>
   <p class="text-danger text-center">Schools must be ranked 1-4 with no duplicates</p>
@@ -64,8 +60,7 @@
   <p>Super Tie Breaks remaining: <span class="text-success fw-bold"><%= 2 - @super_tie_breaks_used %></span></p>
 <!-- END TIE BREAK -->
 
-<br>
-<p>Seed lines</p>
+<!-- <p>Seed lines</p> -->
 <% seed_lines.each do |seed_line| %>
     <% seed_line_rank = DraftRank.where(seed: seed_line, player: @player, game: @game).pluck(:rank) %>
     <% if seed_line == @seed.to_i %>
