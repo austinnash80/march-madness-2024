@@ -1,7 +1,7 @@
 <% teams = [] %>
 <% teams.push(Game.where(id: @game.id).pluck(:p1),Game.where(id: @game.id).pluck(:p2),Game.where(id: @game.id).pluck(:p3),Game.where(id: @game.id).pluck(:p4)) %>
     <% teams.each do |team| %>
-      <table class="table table-bordered">
+      <table class="table">
         <caption class="caption-top">Team <%= team.join %></caption>
         <thead>
           <tr>

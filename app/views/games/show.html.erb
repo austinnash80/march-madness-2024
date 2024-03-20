@@ -1,16 +1,27 @@
 <p style="color: green"><%= notice %></p>
 <h3 class="text-center">Game ID: <%= @game.id %></h3>
-<div class="row">
-  <div class="col-md-3">
-    <%= render "form", game: @game %>
+
+<% if @game.p1.blank? || @game.p2.blank? || @game.p3.blank? || @game.p4.blank? %> 
+  <div class="row">
+    <div class="col-md-3">
+      <%= render "form", game: @game %>
+    </div>
+    <div class="col-md-6">
+      <%= render "standings" %>
+    </div>
   </div>
-  <div class="col-md-6">
-    <%= render "standings" %>
+<% else %>
+  <div class="row">
+    <div class="col-md-12">
+      <%= render "standings" %>
+    </div>
   </div>
-</div>
+<% end %>
 <br>
 <div class="row">
-  <%= render "teams", game: @game %>
+  <div class="col-md-12">
+    <%= render "teams", game: @game %>
+  </div>
 </div>
 <br>
 <div class="row">

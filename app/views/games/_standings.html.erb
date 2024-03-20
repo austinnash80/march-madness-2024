@@ -19,7 +19,7 @@
       <% if p1 == 64 %>
         <td class="text-success">Done Ranking</td>
       <% else %>
-        <td><%= link_to 'Ready to rank schools', draft_ranks_path(seed: 1, player: @game.p1, game: @game) %></td>
+        <td><%= link_to 'Rank schools', draft_ranks_path(seed: 1, player: @game.p1, game: @game) %></td>
       <% end %>
       <td><%= @game.p1_score %></td>
       <td><%= DraftResult.where(game_id: @game, player: @game.p1).count %></td>
@@ -30,7 +30,7 @@
       <% if p2 == 64 %>
         <td class="text-success">Done Ranking</td>
       <% else %>
-        <td><%= link_to 'Ready to rank schools', draft_ranks_path(seed: 1, player: @game.p2, game: @game) %></td>
+        <td><%= link_to 'Rank schools', draft_ranks_path(seed: 1, player: @game.p2, game: @game) %></td>
       <% end %>
       <td><%= @game.p2_score %></td>
       <td><%= DraftResult.where(game_id: @game, player: @game.p2).count %></td>
@@ -41,7 +41,7 @@
       <% if p3 == 64 %>
         <td class="text-success">Done Ranking</td>
       <% else %>
-        <td><%= link_to 'Ready to rank schools', draft_ranks_path(seed: 1, player: @game.p3, game: @game) %></td>
+        <td><%= link_to 'Rank schools', draft_ranks_path(seed: 1, player: @game.p3, game: @game) %></td>
       <% end %>
       <td><%= @game.p3_score %></td>
       <td><%= DraftResult.where(game_id: @game, player: @game.p3).count %></td>
@@ -52,7 +52,7 @@
       <% if p4 == 64 %>
         <td class="text-success">Done Ranking</td>
       <% else %>
-        <td><%= link_to 'Ready to rank schools', draft_ranks_path(seed: 1, player: @game.p4, game: @game) %></td>
+        <td><%= link_to 'Rank schools', draft_ranks_path(seed: 1, player: @game.p4, game: @game) %></td>
       <% end %>
       <td><%= @game.p4_score %></td>
       <td><%= DraftResult.where(game_id: @game, player: @game.p4).count %></td>
