@@ -1,0 +1,41 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Schools</h1>
+
+<div id="schools">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>School</th>
+        <th>Seed</th>
+        <th>Region</th>
+        <th>Alive</th>
+        <th>Wins</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @schools.each do |school| %>
+      <tr>
+        <td><%= school.id %></td>
+        <td><%= school.name %></td>
+        <td><%= school.seed %></td>
+        <td><%= school.region %></td>
+        <td><%= school.alive %></td>
+        <td><%= school.wins %></td>
+        <td><%= link_to "Edit", edit_school_path(school) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%# @schools.each do |school| %>
+    <%#= render school %>
+    <%# <p> %>
+      <%#= link_to "Show this school", school %>
+    <%# </p> %>
+  <%# end %>
+</div>
+
+
+<%= link_to "New school", new_school_path %>

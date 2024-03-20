@@ -1,0 +1,68 @@
+<%= form_with(model: draft_rank) do |form| %>
+  <% if draft_rank.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(draft_rank.errors.count, "error") %> prohibited this draft_rank from being saved:</h2>
+
+      <ul>
+        <% draft_rank.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :game_id, 'Game ID', style: "display: block" %>
+    <%= form.number_field :game_id, value: params['game'] %>
+  </div>
+
+  <!-- <div>
+    <%= form.label :school_id, style: "display: block" %>
+    <%= form.number_field :school_id %>
+  </div> -->
+
+  <div>
+    <%= form.label :player, style: "display: block" %>
+    <%= form.text_field :player, value: params['player'] %>
+  </div>
+
+  <!-- <div>
+    <%= form.label :rank, style: "display: block" %>
+    <%= form.number_field :rank %>
+  </div> -->
+
+  <div>
+    <%= form.label :seed, style: "display: block" %>
+    <%= form.number_field :seed %>
+  </div>
+  <div>
+    <%= form.label :r1, style: "display: block" %>
+    <%= form.number_field :r1 %>
+  </div>
+  <div>
+    <%= form.label :r2, style: "display: block" %>
+    <%= form.number_field :r1 %>
+  </div>
+  <div>
+    <%= form.label :r3, style: "display: block" %>
+    <%= form.number_field :r1 %>
+  </div>
+  <div>
+    <%= form.label :r4, style: "display: block" %>
+    <%= form.number_field :r1 %>
+  </div>
+
+  <div>
+    <%= form.label :priority, style: "display: block" %>
+    <%= form.check_box :priority %>
+  </div>
+
+  <div>
+    <%= form.label :super_priority, style: "display: block" %>
+    <%= form.check_box :super_priority %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,44 @@
+<h1>Admin Page</h1>
+
+<table class="table">
+	<caption class="caption-top">All pages</caption>
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Link</th>
+			<th>Notes</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Home Page</td>
+			<td><%= link_to 'Go', pages_home_page_path %></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Uploads</td>
+			<td><%= link_to 'Go', uploads_new_path %></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Schools</td>
+			<td><%= link_to 'Go', schools_path %></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Games</td>
+			<td><%= link_to 'Go', games_path %></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Draft Results</td>
+			<td><%= link_to 'Go', draft_results_path %></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Draft Rank</td>
+			<td><%= link_to 'Go', draft_ranks_path %></td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>

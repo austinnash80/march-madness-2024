@@ -1,0 +1,37 @@
+<!-- app/views/uploads/new.html.erb -->
+<p style="color: green"><%= notice %></p>
+<h1>Uploads</h1>
+<br>
+
+<div class="card bg-light">
+  <div class="card-body">
+    <h3>Schools</h3>
+    <%= form_with(url: uploads_create_school_path, local: true, multipart: true) do |form| %>
+      <%= form.file_field :file %>
+      <%= form.submit 'Upload' %>
+    <% end %>
+    <%= link_to "Download CSV", download_csv_schools_path(format: :csv) %>
+  </div>
+</div>
+<br>
+<div class="card bg-light">
+  <div class="card-body">
+    <h3>Draft Ranks</h3>
+    <%= form_with(url: uploads_create_draft_ranks_path, local: true, multipart: true) do |form| %>
+      <%= form.file_field :file %>
+      <%= form.submit 'Upload' %>
+    <% end %>
+    <%= link_to "Download CSV", download_csv_draft_ranks_path(format: :csv) %>
+  </div>
+</div>
+<br>
+<div class="card bg-light">
+  <div class="card-body">
+    <h3>Draft Results</h3>
+    <%= form_with(url: uploads_create_draft_result_path, local: true, multipart: true) do |form| %>
+      <%= form.file_field :file %>
+      <%= form.submit 'Upload' %>
+    <% end %> 
+    <%= link_to "Download CSV", download_csv_draft_results_path(format: :csv) %>
+  </div>
+</div>

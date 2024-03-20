@@ -1,0 +1,26 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Draft results</h1>
+
+<div id="draft_results">
+  <table class="table">
+    <thead>
+      <tr>
+        <td>Game ID</td>
+        <td>School ID</td>
+        <td>Player</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @draft_results.each do |draft_result| %>
+      <tr>
+        <td><%= draft_result.game_id %></td>
+        <td><%= draft_result.school_id %></td>
+        <td><%= draft_result.player %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+
+<%#= link_to "New draft result", new_draft_result_path %>

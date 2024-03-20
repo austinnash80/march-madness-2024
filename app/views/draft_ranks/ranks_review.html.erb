@@ -1,0 +1,47 @@
+<% game_id = params['game'].to_i %>
+
+<%= render "seed_1" %>
+<%= render "seed_2" %>
+<%= render "seed_3" %>
+<%= render "seed_4" %>
+<%= render "seed_5" %>
+<%= render "seed_6" %>
+<%= render "seed_7" %>
+<%= render "seed_8" %>
+<%= render "seed_9" %>
+<%= render "seed_10" %>
+<%= render "seed_11" %>
+<%= render "seed_12" %>
+<%= render "seed_13" %>
+<%= render "seed_14" %>
+<%= render "seed_15" %>
+<%= render "seed_16" %>
+
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Seed</th>
+			<th>Player</th>
+			<th>School ID</th>
+			<th>School Name</th>
+			<th>Rank</th>
+			<th>Priority</th>
+			<th>Super Priority</th>
+		</tr>
+	</thead>
+	<tbody>
+	<% DraftRank.where(game_id: game_id, seed: 1, rank: 1).all.each do |rank| %>
+		<tr>
+			<td><%= rank.seed %></td>
+			<td><%= rank.player %></td>
+			<td><%= rank.school_id %></td>
+			<td><%= rank.school.name %></td>
+			<td><%= rank.rank %></td>
+			<td><%= rank.priority %></td>
+			<td><%= rank.super_priority %></td>
+		</tr>
+	</tbody>
+	<% end %>
+</table>
+

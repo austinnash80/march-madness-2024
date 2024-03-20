@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: MyString
+  p1: MyString
+  p1_score: 1
+  p2: MyString
+  p2_score: 1
+  p3: MyString
+  p3_score: 1
+  p4: MyString
+  p4_score: 1
+
+two:
+  status: MyString
+  p1: MyString
+  p1_score: 1
+  p2: MyString
+  p2_score: 1
+  p3: MyString
+  p3_score: 1
+  p4: MyString
+  p4_score: 1

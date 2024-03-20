@@ -1,0 +1,43 @@
+<p style="color: green"><%= notice %></p>
+<div class="text-center">
+  <label for="gameId">Search by game ID:</label>
+  <input type="text" id="gameId" name="gameId">
+  <button class="btn btn-primary" onclick="searchPosts()">Go</button>
+</div>
+<br>
+<%= form_with(model: @game) do |form| %>
+<div class="text-center">
+  <div style="<%= 'display:none'%>" >
+    <%= form.label :status, style: "display: block" %>
+    <%= form.text_field :status %>
+  </div>
+
+  <div>
+    <%= form.submit 'Start new game', class: 'btn btn-primary' %>
+  </div>
+<% end %>
+</div>
+
+<%#= image_tag image_path("bracket.jpg"),size: "540x400" %>
+
+<br>
+<h3>Rules:</h3>
+<p>Each game has 4 players. Each player will end up with 16 schools on their team. 1 school from every seed line (one #1 seed, one #2 seed, one #3 seed, etc.)</p>
+<p>Each time one of your schools wins a game your team recieves points. </p>
+<p>The team with the most points after the championship games is the winner</p>
+<br>
+<h5>Draft:</h5>
+<p>You will rank each of the 4 teams per seed line (there are 4 #1 seeds, 4 #2 seeds ,etc) in order of the ones you want to have on your team</p>
+<p>If you rank a school #1 on the seed line and nobody else does than you get that school added to your team</p>
+<p>You will also designate 4 seed lines as 'priorty' and 2 'super priority'. This mean you will win a tie breaker against anyone who has a lower prioity level for that seed line</p>
+<p>If there is still a tie then it will be randomly choosen</p>
+
+
+
+<script type="text/javascript">
+	function searchPosts() {
+	  var gameId = document.getElementById('gameId').value;
+	  var url = '/pages/home_page?gameId=' + encodeURIComponent(gameId);
+	  window.location.href = url;
+	}
+</script>

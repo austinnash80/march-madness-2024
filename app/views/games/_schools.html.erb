@@ -1,0 +1,93 @@
+  <div class="col-md-3">
+    <table class="table table-bordered">
+      <caption class="caption-top">West Region</caption>
+      <thead>
+        <tr>
+          <th>Seed</th>
+          <th>School</th>
+          <th>Wins</th>
+          <th>Alive</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% School.where(region: 'West').all.each do |school| %>
+        <tr>
+          <td><%= school.seed %></td>
+          <td><%= school.name %></td>
+          <td><%= school.wins %></td>
+          <td><%= school.alive %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-3">
+    <table class="table table-bordered">
+      <caption class="caption-top">Midwest Region</caption>
+      <thead>
+        <tr>
+          <th>Seed</th>
+          <th>School</th>
+          <th>Wins</th>
+          <th>Alive</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% School.where(region: 'East').all.each do |school| %>
+        <tr>
+          <td><%= school.seed %></td>
+          <td><%= school.name %></td>
+          <td><%= school.wins %></td>
+          <td><%= school.alive %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-3">
+    <table class="table table-bordered">
+      <caption class="caption-top">South Region</caption>
+      <thead>
+        <tr>
+          <th>Seed</th>
+          <th>School</th>
+          <th>Wins</th>
+          <th>Alive</th>
+        </tr>
+      </thead>
+            <tbody>
+        <% School.where(region: 'South').all.each do |school| %>
+        <tr>
+          <td><%= school.seed %></td>
+          <td><%= school.name %></td>
+          <td><%= school.wins %></td>
+          <td><%= school.alive %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-3">
+    <table class="table table-bordered">
+      <caption class="caption-top">East Region</caption>
+      <thead>
+        <tr>
+          <th>Seed</th>
+          <th>School</th>
+          <th>Wins</th>
+          <th>Alive</th>
+        </tr>
+      </thead>
+            <tbody>
+        <% School.where(region: 'Midwest').all.each do |school| %>
+        <tr>
+          <td><%= school.seed %></td>
+          <td><%= school.name %></td>
+          <td><%= school.wins %></td>
+          <td><%= school.alive %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

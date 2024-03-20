@@ -1,0 +1,99 @@
+<% game_id = params['game'].to_i %>
+<% school_ids = (57..60).to_a %>
+<% has_seed = [] %>
+
+<% school_ids.each do |school_id| %>
+	<!-- Rank 1, Super Priority -->
+	<% if DraftResult.where(game_id: game_id, school_id: school_id).pluck(:id).length == 0 %>
+		<% DraftRank.where(game_id: game_id, school_id: school_id, rank: 1, super_priority: true).where.not(player: has_seed).limit(1).each do |i| %>
+			<% has_seed.push(i.player) %>
+			<% DraftResult.create(game_id: game_id,school_id: school_id,player: i.player).save %>
+		<% end %>
+	<% end %>
+	<!-- Rank 1, Priority -->
+	<% if DraftResult.where(game_id: game_id, school_id: school_id).pluck(:id).length == 0 %>
+		<% DraftRank.where(game_id: game_id, school_id: school_id, rank: 1, priority: true).where.not(player: has_seed).limit(1).each do |i| %>
+			<% has_seed.push(i.player) %>
+			<% DraftResult.create(game_id: game_id,school_id: school_id,player: i.player).save %>
+		<% end %>
+	<% end %>	
+	<!-- Rank 1 -->
+	<% if DraftResult.where(game_id: game_id, school_id: school_id).pluck(:id).length == 0 %>
+		<% DraftRank.where(game_id: game_id, school_id: school_id, rank: 1).where.not(player: has_seed).limit(1).each do |i| %>
+			<% has_seed.push(i.player) %>
+			<% DraftResult.create(game_id: game_id,school_id: school_id,player: i.player).save %>
+		<% end %>
+	<% end %>	
+<% end %>
+
+<% school_ids.each do |school_id| %>
+	<!-- Rank 2, Super Priority -->
+	<% if DraftResult.where(game_id: game_id, school_id: school_id).pluck(:id).length == 0 %>
+		<% DraftRank.where(game_id: game_id, school_id: school_id, rank: 2, super_priority: true).where.not(player: has_seed).limit(1).each do |i| %>
+			<% has_seed.push(i.player) %>
+			<% DraftResult.create(game_id: game_id,school_id: school_id,player: i.player).save %>
+		<% end %>
+	<% end %>
+	<!-- Rank 2, Priority -->
+	<% if DraftResult.where(game_id: game_id, school_id: school_id).pluck(:id).length == 0 %>
+		<% DraftRank.where(game_id: game_id, school_id: school_id, rank: 2, priority: true).where.not(player: has_seed).limit(1).each do |i| %>
+			<% has_seed.push(i.player) %>
+			<% DraftResult.create(game_id: game_id,school_id: school_id,player: i.player).save %>
+		<% end %>
+	<% end %>	
+	<!-- Rank 2 -->
+	<% if DraftResult.where(game_id: game_id, school_id: school_id).pluck(:id).length == 0 %>
+		<% DraftRank.where(game_id: game_id, school_id: school_id, rank: 2).where.not(player: has_seed).limit(1).each do |i| %>
+			<% has_seed.push(i.player) %>
+			<% DraftResult.create(game_id: game_id,school_id: school_id,player: i.player).save %>
+		<% end %>
+	<% end %>	
+<% end %>
+
+<% school_ids.each do |school_id| %>
+	<!-- Rank 3, Super Priority -->
+	<% if DraftResult.where(game_id: game_id, school_id: school_id).pluck(:id).length == 0 %>
+		<% DraftRank.where(game_id: game_id, school_id: school_id, rank: 3, super_priority: true).where.not(player: has_seed).limit(1).each do |i| %>
+			<% has_seed.push(i.player) %>
+			<% DraftResult.create(game_id: game_id,school_id: school_id,player: i.player).save %>
+		<% end %>
+	<% end %>
+	<!-- Rank 3, Priority -->
+	<% if DraftResult.where(game_id: game_id, school_id: school_id).pluck(:id).length == 0 %>
+		<% DraftRank.where(game_id: game_id, school_id: school_id, rank: 3, priority: true).where.not(player: has_seed).limit(1).each do |i| %>
+			<% has_seed.push(i.player) %>
+			<% DraftResult.create(game_id: game_id,school_id: school_id,player: i.player).save %>
+		<% end %>
+	<% end %>	
+	<!-- Rank 3 -->
+	<% if DraftResult.where(game_id: game_id, school_id: school_id).pluck(:id).length == 0 %>
+		<% DraftRank.where(game_id: game_id, school_id: school_id, rank: 3).where.not(player: has_seed).limit(1).each do |i| %>
+			<% has_seed.push(i.player) %>
+			<% DraftResult.create(game_id: game_id,school_id: school_id,player: i.player).save %>
+		<% end %>
+	<% end %>	
+<% end %>
+
+<% school_ids.each do |school_id| %>
+	<!-- Rank 4, Super Priority -->
+	<% if DraftResult.where(game_id: game_id, school_id: school_id).pluck(:id).length == 0 %>
+		<% DraftRank.where(game_id: game_id, school_id: school_id, rank: 4, super_priority: true).where.not(player: has_seed).limit(1).each do |i| %>
+			<% has_seed.push(i.player) %>
+			<% DraftResult.create(game_id: game_id,school_id: school_id,player: i.player).save %>
+		<% end %>
+	<% end %>
+	<!-- Rank 4, Priority -->
+	<% if DraftResult.where(game_id: game_id, school_id: school_id).pluck(:id).length == 0 %>
+		<% DraftRank.where(game_id: game_id, school_id: school_id, rank: 4, priority: true).where.not(player: has_seed).limit(1).each do |i| %>
+			<% has_seed.push(i.player) %>
+			<% DraftResult.create(game_id: game_id,school_id: school_id,player: i.player).save %>
+		<% end %>
+	<% end %>	
+	<!-- Rank 4 -->
+	<% if DraftResult.where(game_id: game_id, school_id: school_id).pluck(:id).length == 0 %>
+		<% DraftRank.where(game_id: game_id, school_id: school_id, rank: 4).where.not(player: has_seed).limit(1).each do |i| %>
+			<% has_seed.push(i.player) %>
+			<% DraftResult.create(game_id: game_id,school_id: school_id,player: i.player).save %>
+		<% end %>
+	<% end %>	
+<% end %>

@@ -1,0 +1,82 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>School Selection</h1>
+<ul>
+  <li>For each seed line (1-16) rank the schools in order of the ones you want on your team </li>
+  <li>1 being the school that you want the most. 4 being the school you want the least</li>
+  <li>Once you've ranked the schools 1-4, move on to the next seed line</li>
+  <li>Select 4 seed lines to be your Tie-Break priority and 2 seed lines to be a Super Tie-Break</li>
+</ul>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th width="15%">Seed</th>
+      <th width="15%">Region</th>
+      <th width="35%">School</th>
+      <th width="15%">My rank</th>
+      <th width="20%" colspan="4" class="text-center">Choose rank</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% ranks = [] %>
+    <% School.where(seed: @seed).each do |school| %>
+    <tr>
+      <td><%= school.seed %></td>
+      <td><%= school.region %></td>
+      <td><%= school.name %></td>
+      <% rank = DraftRank.where(game_id: params['game'], player: params['player'], school_id: school).pluck('rank') %>
+        <% ranks.push(rank[0]) %>
+      <% if rank.blank? %>
+       <td class="text-danger"> Not selected</td>
+      <% else %>  
+        <td class="text-success"> <%= rank[0] %> </td>
+      <% end %>
+        <td><%= link_to "1", draft_ranks_path(pick: 'yes', seed: @seed, rank: 1, school_id: school, game: params['game'], player: params['player']) %></td>
+        <td><%= link_to "2", draft_ranks_path(pick: 'yes', seed: @seed, rank: 2, school_id: school, game: params['game'], player: params['player']) %></td>
+        <td><%= link_to "3", draft_ranks_path(pick: 'yes', seed: @seed, rank: 3, school_id: school, game: params['game'], player: params['player']) %></td>
+        <td><%= link_to "4", draft_ranks_path(pick: 'yes', seed: @seed, rank: 4, school_id: school, game: params['game'], player: params['player']) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<% seed_lines = (1..16).to_a %>
+<% if ranks.compact.sort == [1,2,3,4] %>
+  <p class="text-success text-center">Complete - move to next seed line or use a Tie-Break</p>
+    <% if @tie_break == true %>
+      <span class="text-success">You are usig a Tie-Break </span><small><%= link_to "Remove", draft_ranks_path(pick: 'priority_remove', seed: @seed, game: @game, player: @player), class: '' %></small>
+    <% else %>
+      <% unless @tie_breaks_used == 4 %><%= link_to "Use a Tie Break", draft_ranks_path(pick: 'priority', seed: @seed, game: @game, player: @player), class: 'btn btn-outline-secondary btn-sm' %><% end %>
+    <% end %>
+    <% if @super_tie_break == true %>
+      <span class="text-success"> You are usig a Super Tie-Break </span><small><%= link_to "Remove", draft_ranks_path(pick: 'super_priority_remove', seed: @seed, game: @game, player: @player), class: '' %></small>
+    <% else %>
+      <% unless @super_tie_breaks_used == 2%><%= link_to "Use a Super Tie-Break", draft_ranks_path(pick: 'super_priority', seed: @seed, game: @game, player: @player), class: 'btn btn-outline-secondary btn-sm' %><% end %>
+    <% end %>
+<% else %>
+  <p class="text-danger text-center">Schools must be ranked 1-4 with no duplicates</p>
+<% end %>
+<br><br>
+<!-- TIE BREAK LINES -->
+  <p>Tie Breaks remaining: <span class="text-success fw-bold"><%= 4 - @tie_breaks_used %></span></p>
+  <p>Super Tie Breaks remaining: <span class="text-success fw-bold"><%= 2 - @super_tie_breaks_used %></span></p>
+<!-- END TIE BREAK -->
+
+<br>
+<p>Seed lines</p>
+<% seed_lines.each do |seed_line| %>
+    <% seed_line_rank = DraftRank.where(seed: seed_line, player: @player, game: @game).pluck(:rank) %>
+    <% if seed_line == @seed.to_i %>
+      <% color = 'btn-primary' %>
+    <% elsif seed_line_rank.compact.sort ==  [1,2,3,4]%>
+      <% color = 'btn-success' %>
+    <% else %>
+      <% color = 'btn-secondary' %>
+    <% end %>
+
+    <%= link_to seed_line, draft_ranks_path(seed: seed_line, player: @player, game: @game), class: "btn #{color}"%>
+<% end %>
+<br><br>
+<%= link_to 'Finished ranking', game_path(@game, finish: 'yes', game_id: @game, player: @player), class: 'btn btn-primary' %>
