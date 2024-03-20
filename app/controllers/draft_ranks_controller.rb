@@ -41,8 +41,7 @@ class DraftRanksController < ApplicationController
 
   end
   def ranks_review
-    
-    
+    #redirect_to game_path(id: params['game'].to_i)
   end
 
   # GET /draft_ranks/1 or /draft_ranks/1.json
