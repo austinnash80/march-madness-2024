@@ -2,15 +2,18 @@
 <% p2 = DraftRank.where(game_id: @game, player: @game.p2).pluck(:rank).count %>
 <% p3 = DraftRank.where(game_id: @game, player: @game.p3).pluck(:rank).count %>
 <% p4 = DraftRank.where(game_id: @game, player: @game.p4).pluck(:rank).count %>
+<% p1_school_id = DraftResult.where(game_id: @game, player: @game.p1).pluck(:school_id) %>
+<% p2_school_id = DraftResult.where(game_id: @game, player: @game.p2).pluck(:school_id) %>
+<% p3_school_id = DraftResult.where(game_id: @game, player: @game.p3).pluck(:school_id) %>
+<% p4_school_id = DraftResult.where(game_id: @game, player: @game.p4).pluck(:school_id) %>
 
 <table class="table">
   <thead>
     <tr>
       <th>Players</th>
       <th>Status</th>
-      <th>Score</th>
+      <th>Wins</th>
       <th>Schools remaining</th>
-      <th>Max points</th>
     </tr>
   </thead>
   <tbody>
@@ -21,9 +24,8 @@
       <% else %>
         <td><% unless @game.p1.blank? %><%= link_to 'Rank schools', draft_ranks_path(seed: 1, player: @game.p1, game: @game) %><% end %></td>
       <% end %>
-      <td><%= @game.p1_score %></td>
-      <td><%= DraftResult.where(game_id: @game, player: @game.p1).count %></td>
-      <td></td>
+      <td><%= School.where(id: p1_school_id).sum(:wins) %></td>
+      <td><%= p1_school_id.count - School.where(id: p1_school_id).where(alive: false).count %></td>
     </tr>
     <tr>
       <td><%= @game.p2 %></td>
@@ -32,9 +34,8 @@
       <% else %>
         <td><% unless @game.p2.blank? %><%= link_to 'Rank schools', draft_ranks_path(seed: 1, player: @game.p2, game: @game) %><% end %></td>
       <% end %>
-      <td><%= @game.p2_score %></td>
-      <td><%= DraftResult.where(game_id: @game, player: @game.p2).count %></td>
-      <td></td>
+      <td><%= School.where(id: p2_school_id).sum(:wins) %></td>
+      <td><%= p2_school_id.count - School.where(id: p2_school_id).where(alive: false).count %></td>
     </tr>
     <tr>
       <td><%= @game.p3 %></td>
@@ -43,9 +44,8 @@
       <% else %>
         <td><% unless @game.p3.blank? %><%= link_to 'Rank schools', draft_ranks_path(seed: 1, player: @game.p3, game: @game) %><% end %></td>
       <% end %>
-      <td><%= @game.p3_score %></td>
-      <td><%= DraftResult.where(game_id: @game, player: @game.p3).count %></td>
-      <td></td>
+      <td><%= School.where(id: p3_school_id).sum(:wins) %></td>
+      <td><%= p3_school_id.count - School.where(id: p3_school_id).where(alive: false).count %></td>
     </tr>
     <tr>
       <td><%= @game.p4 %></td>
@@ -54,9 +54,8 @@
       <% else %>
         <td><% unless @game.p4.blank? %><%= link_to 'Rank schools', draft_ranks_path(seed: 1, player: @game.p4, game: @game) %><% end %></td>
       <% end %>
-      <td><%= @game.p4_score %></td>
-      <td><%= DraftResult.where(game_id: @game, player: @game.p4).count %></td>
-      <td></td>
+      <td><%= School.where(id: p4_school_id).sum(:wins) %></td>
+      <td><%= p4_school_id.count - School.where(id: p4_school_id).where(alive: false).count %></td>
     </tr>
   </tbody>
 </table>

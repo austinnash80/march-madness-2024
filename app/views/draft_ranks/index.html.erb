@@ -45,12 +45,12 @@
 
     <div class="btn-group">
       <% if @tie_break == true %>
-        <%= link_to "Priority tag selected (click to remove)", draft_ranks_path(pick: 'priority_remove', seed: @seed, game: @game, player: @player), class: 'btn btn-sm btn-success' %>
+        <%= link_to "Priority tag selected", draft_ranks_path(pick: 'priority_remove', seed: @seed, game: @game, player: @player), class: 'btn btn-sm btn-success' %>
       <% else %>
         <% unless @tie_breaks_used == 4 %><%= link_to "Add priority tag", draft_ranks_path(pick: 'priority', seed: @seed, game: @game, player: @player), class: 'btn btn-outline-success btn-sm' %><% end %>
       <% end %>
       <% if @super_tie_break == true %>
-        <%= link_to "Super priority tag selected (click to remove)", draft_ranks_path(pick: 'super_priority_remove', seed: @seed, game: @game, player: @player), class: 'btn btn-sm btn-success' %>
+        <%= link_to "Super priority tag selected", draft_ranks_path(pick: 'super_priority_remove', seed: @seed, game: @game, player: @player), class: 'btn btn-sm btn-success' %>
       <% else %>
         <% unless @super_tie_breaks_used == 2 %><%= link_to "Add super priority tag ", draft_ranks_path(pick: 'super_priority', seed: @seed, game: @game, player: @player), class: 'btn btn-outline-success btn-sm' %><% end %>
       <% end %>

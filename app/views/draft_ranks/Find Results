@@ -1,0 +1,86 @@
+Searching 686 files for "require 'csv'
+"
+
+~/Projects/MarchMadness2024V2/app/controllers/uploads_controller.rb:
+    6  
+    7    def create_school
+    8:     require 'csv'
+    9: 
+   10      file_path = params[:file].tempfile
+   11  
+   ..
+   18  
+   19    def create_draft_ranks
+   20:     require 'csv'
+   21: 
+   22      file_path = params[:file].tempfile
+   23  
+   ..
+   30  
+   31    def create_draft_result
+   32:     require 'csv'
+   33: 
+   34      file_path = params[:file].tempfile
+   35  
+
+~/Projects/MarchMadness2024V2/lib/tasks/upoad_data.rake:
+    2  #   desc 'Upload data to School'
+    3  #   task :data => :environment do
+    4: #     require 'csv'
+    5: 
+    6  #     file_path = '/Users/austinnash/Downloads/Book1.csv'
+    7  
+
+4 matches across 2 files
+
+
+Searching 686 files for "CSV."
+
+~/Projects/MarchMadness2024V2/app/controllers/uploads_controller.rb:
+   10      file_path = params[:file].tempfile
+   11  
+   12:     CSV.foreach(file_path, headers: true) do |row|
+   13        School.create!(row.to_hash)
+   14      end
+   ..
+   21      file_path = params[:file].tempfile
+   22  
+   23:     CSV.foreach(file_path, headers: true) do |row|
+   24        DraftRank.create!(row.to_hash)
+   25      end
+   ..
+   32      file_path = params[:file].tempfile
+   33  
+   34:     CSV.foreach(file_path, headers: true) do |row|
+   35        DraftResult.create!(row.to_hash)
+   36      end
+
+~/Projects/MarchMadness2024V2/app/models/draft_rank.rb:
+    6      attributes = %w[id game_id school_id player rank priority super_priority seed created_at updated_at]
+    7  
+    8:     CSV.generate(headers: true) do |csv|
+    9        csv << attributes
+   10  
+
+~/Projects/MarchMadness2024V2/app/models/draft_result.rb:
+    8      attributes = %w[id game_id school_id player created_at updated_at]
+    9  
+   10:     CSV.generate(headers: true) do |csv|
+   11        csv << attributes
+   12  
+
+~/Projects/MarchMadness2024V2/app/models/school.rb:
+    7      attributes = %w[id seed region name alive wins created_at updated_at]
+    8  
+    9:     CSV.generate(headers: true) do |csv|
+   10        csv << attributes
+   11  
+
+~/Projects/MarchMadness2024V2/lib/tasks/upoad_data.rake:
+    6  #     file_path = '/Users/austinnash/Downloads/Book1.csv'
+    7  
+    8: #     CSV.foreach(file_path, headers: true) do |row|
+    9  #       School.create!(row.to_hash)
+   10  #     end
+
+7 matches across 5 files
